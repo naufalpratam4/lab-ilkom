@@ -28,7 +28,7 @@
 
 <body class="bg-gray-50 text-gray-800">
 
-   @include('template.navbar')
+    @include('template.navbar')
 
     <header
         class="relative bg-gradient-to-r from-green-600 to-teal-700 text-white py-20 md:py-24 px-4 rounded-b-xl shadow-lg">
@@ -46,16 +46,17 @@
         <div class="container mx-auto max-w-3xl">
             <h2 class="text-4xl font-bold text-center mb-10 text-gray-800">Formulir Reservasi</h2>
             <div class="bg-white p-8 md:p-10 rounded-xl shadow-lg border border-gray-200">
-                <form action="#" method="POST" class="space-y-6">
+                <form action="{{ route('addreservasi') }}" method="POST" class="space-y-6">
+                    @csrf
                     <div>
-                        <label for="nama" class="block text-lg font-medium text-gray-700 mb-2">Nama Lengkap</label>
-                        <input type="text" id="nama" name="nama" required
+                        <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" required
                             class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg">
                     </div>
 
                     <div>
-                        <label for="identitas" class="block text-lg font-medium text-gray-700 mb-2">NIM / NIP</label>
-                        <input type="text" id="identitas" name="identitas" required
+                        <label for="nim" class="block text-lg font-medium text-gray-700 mb-2">NIM / NIP</label>
+                        <input type="text" id="nim" name="nim" required
                             class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg">
                     </div>
 
@@ -66,15 +67,15 @@
                     </div>
 
                     <div>
-                        <label for="telepon" class="block text-lg font-medium text-gray-700 mb-2">Nomor Telepon</label>
-                        <input type="tel" id="telepon" name="telepon" required
+                        <label for="no" class="block text-lg font-medium text-gray-700 mb-2">Nomor Telepon</label>
+                        <input type="tel" id="no" name="no" required
                             class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg">
                     </div>
 
                     <div>
-                        <label for="ruangan_lab" class="block text-lg font-medium text-gray-700 mb-2">Pilih Ruangan
+                        <label for="ruang" class="block text-lg font-medium text-gray-700 mb-2">Pilih Ruangan
                             Lab</label>
-                        <select id="ruangan_lab" name="ruangan_lab" required
+                        <select id="ruang" name="ruang" required
                             class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg">
                             <option value="">-- Pilih Ruangan --</option>
                             <option value="lab_pemrograman">Lab Pemrograman Dasar (Kapasitas 30)</option>
@@ -86,9 +87,9 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="tanggal" class="block text-lg font-medium text-gray-700 mb-2">Tanggal
+                            <label for="tgl" class="block text-lg font-medium text-gray-700 mb-2">Tanggal
                                 Reservasi</label>
-                            <input type="date" id="tanggal" name="tanggal" required
+                            <input type="date" id="tgl" name="tgl" required
                                 class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg">
                         </div>
                         <div>
@@ -108,7 +109,7 @@
                     <div>
                         <label for="tujuan" class="block text-lg font-medium text-gray-700 mb-2">Tujuan
                             Penggunaan</label>
-                        <textarea id="tujuan" name="tujuan" rows="4" required
+                        <textarea id="tujuan" name="deskripsi" rows="4" required
                             class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg"
                             placeholder="Contoh: Praktikum Basis Data, Penelitian Tugas Akhir, Workshop AI..."></textarea>
                     </div>
