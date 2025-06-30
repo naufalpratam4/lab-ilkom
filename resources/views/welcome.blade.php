@@ -52,7 +52,7 @@
                         Pinjam berbagai peralatan dan komponen elektronik untuk proyek dan praktikum Anda.
                     </p>
                     <div class="text-center mt-6">
-                        <a href="#"
+                        <a href="/peminjaman"
                             class="inline-block bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">Detail
                             & Pinjam</a>
                     </div>
