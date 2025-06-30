@@ -73,7 +73,7 @@
                         Booking ruang lab untuk kegiatan penelitian, tugas akhir, atau workshop.
                     </p>
                     <div class="text-center mt-6">
-                        <a href="#"
+                        <a href="/reservasi"
                             class="inline-block bg-green-600 text-white py-2 px-6 rounded-full hover:bg-green-700 transition-colors">Cek
                             Ketersediaan</a>
                     </div>

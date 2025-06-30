@@ -1,588 +1,480 @@
 @extends('dashboard.template.templatedashboard')
+
 @section('content')
 
-    <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
-        <!-- Start coding here -->
-        <div class="bg-white  relative shadow-md sm:rounded-lg overflow-hidden">
-            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                <div class="w-full md:w-1/2">
-                    <form class="flex items-center">
-                        <label for="simple-search" class="sr-only">Search</label>
-                        <div class="relative w-full">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 "
-                                    fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <input type="text" id="simple-search"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
-                                placeholder="Search" required="">
-                        </div>
-                    </form>
-                </div>
-                <div
-                    class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                    <button type="button"
-                        class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 ">
-                        <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
-                        </svg>
-                        Add product
-                    </button>
-                    <div class="flex items-center space-x-3 w-full md:w-auto">
-                        <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown"
-                            class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 "
-                            type="button">
-                            <svg class="-ml-1 mr-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path clip-rule="evenodd" fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                            </svg>
-                            Actions
-                        </button>
-                        <div id="actionsDropdown"
-                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                            <ul class="py-1 text-sm text-gray-700 "
-                                aria-labelledby="actionsDropdownButton">
-                                <li>
-                                    <a href="#"
-                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mass
-                                        Edit</a>
-                                </li>
-                            </ul>
-                            <div class="py-1">
-                                <a href="#"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete
-                                    all</a>
-                            </div>
-                        </div>
-                        <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown"
-                            class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700   dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                            type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                class="h-4 w-4 mr-2 text-gray-400" viewbox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Filter
-                            <svg class="-mr-1 ml-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path clip-rule="evenodd" fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                            </svg>
-                        </button>
-                        <div id="filterDropdown"
-                            class="z-10 hidden w-48 p-3 bg-white rounded-lg shadow">
-                            <h6 class="mb-3 text-sm font-medium text-gray-900 ">Choose brand</h6>
-                            <ul class="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
-                                <li class="flex items-center">
-                                    <input id="apple" type="checkbox" value=""
-                                        class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 ">
-                                    <label for="apple"
-                                        class="ml-2 text-sm font-medium text-gray-900 ">Apple
-                                        (56)</label>
-                                </li>
-                                <li class="flex items-center">
-                                    <input id="fitbit" type="checkbox" value=""
-                                        class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 ">
-                                    <label for="fitbit"
-                                        class="ml-2 text-sm font-medium text-gray-900 ">Microsoft
-                                        (16)</label>
-                                </li>
-                                <li class="flex items-center">
-                                    <input id="razor" type="checkbox" value=""
-                                        class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 ">
-                                    <label for="razor"
-                                        class="ml-2 text-sm font-medium text-gray-900 ">Razor
-                                        (49)</label>
-                                </li>
-                                <li class="flex items-center">
-                                    <input id="nikon" type="checkbox" value=""
-                                        class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 ">
-                                    <label for="nikon"
-                                        class="ml-2 text-sm font-medium text-gray-900 ">Nikon
-                                        (12)</label>
-                                </li>
-                                <li class="flex items-center">
-                                    <input id="benq" type="checkbox" value=""
-                                        class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 ">
-                                    <label for="benq"
-                                        class="ml-2 text-sm font-medium text-gray-900 ">BenQ
-                                        (74)</label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<div class="mx-auto max-w-screen-xl px-4 lg:px-12 py-8">
+    <div class="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
+
+        <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 border-b border-gray-200">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-2xl font-bold text-gray-800">Manajemen Reservasi Ruangan</h2>
+                <p class="text-sm text-gray-600 mt-1">Tinjau dan kelola semua permintaan reservasi ruangan laboratorium.</p>
             </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 ">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                {{-- Tombol Add Product (Jika ada fungsi tambah reservasi) --}}
+            </div>
+        </div>
+
+        <section id="reservasi" class="p-4">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col" class="px-4 py-3">Product name</th>
-                            <th scope="col" class="px-4 py-3">Category</th>
-                            <th scope="col" class="px-4 py-3">Brand</th>
-                            <th scope="col" class="px-4 py-3">Description</th>
-                            <th scope="col" class="px-4 py-3">Price</th>
-                            <th scope="col" class="px-4 py-3">
-                                <span class="sr-only">Actions</span>
-                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ruangan</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tujuan</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">Apple
-                                iMac 27&#34;</th>
-                            <td class="px-4 py-3">PC</td>
-                            <td class="px-4 py-3">Apple</td>
-                            <td class="px-4 py-3">300</td>
-                            <td class="px-4 py-3">$2999</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="apple-imac-27-dropdown-button"
-                                    data-dropdown-toggle="apple-imac-27-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  "
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="apple-imac-27-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="apple-imac-27-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">Apple
-                                iMac 20&#34;</th>
-                            <td class="px-4 py-3">PC</td>
-                            <td class="px-4 py-3">Apple</td>
-                            <td class="px-4 py-3">200</td>
-                            <td class="px-4 py-3">$1499</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="apple-imac-20-dropdown-button"
-                                    data-dropdown-toggle="apple-imac-20-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  dark:hover:text-gray-100"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="apple-imac-20-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="apple-imac-20-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">Apple
-                                iPhone 14</th>
-                            <td class="px-4 py-3">Phone</td>
-                            <td class="px-4 py-3">Apple</td>
-                            <td class="px-4 py-3">1237</td>
-                            <td class="px-4 py-3">$999</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="apple-iphone-14-dropdown-button"
-                                    data-dropdown-toggle="apple-iphone-14-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  dark:hover:text-gray-100"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="apple-iphone-14-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="apple-iphone-14-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">Apple
-                                iPad Air</th>
-                            <td class="px-4 py-3">Tablet</td>
-                            <td class="px-4 py-3">Apple</td>
-                            <td class="px-4 py-3">4578</td>
-                            <td class="px-4 py-3">$1199</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="apple-ipad-air-dropdown-button"
-                                    data-dropdown-toggle="apple-ipad-air-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  dark:hover:text-gray-100"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="apple-ipad-air-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="apple-ipad-air-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">Xbox
-                                Series S</th>
-                            <td class="px-4 py-3">Gaming/Console</td>
-                            <td class="px-4 py-3">Microsoft</td>
-                            <td class="px-4 py-3">56</td>
-                            <td class="px-4 py-3">$299</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="xbox-series-s-dropdown-button"
-                                    data-dropdown-toggle="xbox-series-s-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  dark:hover:text-gray-100"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="xbox-series-s-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="xbox-series-s-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
-                                PlayStation 5</th>
-                            <td class="px-4 py-3">Gaming/Console</td>
-                            <td class="px-4 py-3">Sony</td>
-                            <td class="px-4 py-3">78</td>
-                            <td class="px-4 py-3">$799</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="playstation-5-dropdown-button"
-                                    data-dropdown-toggle="playstation-5-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  dark:hover:text-gray-100"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="playstation-5-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="playstation-5-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">Xbox
-                                Series X</th>
-                            <td class="px-4 py-3">Gaming/Console</td>
-                            <td class="px-4 py-3">Microsoft</td>
-                            <td class="px-4 py-3">200</td>
-                            <td class="px-4 py-3">$699</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="xbox-series-x-dropdown-button"
-                                    data-dropdown-toggle="xbox-series-x-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  dark:hover:text-gray-100"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="xbox-series-x-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="xbox-series-x-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">Apple
-                                Watch SE</th>
-                            <td class="px-4 py-3">Watch</td>
-                            <td class="px-4 py-3">Apple</td>
-                            <td class="px-4 py-3">657</td>
-                            <td class="px-4 py-3">$399</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="apple-watch-se-dropdown-button"
-                                    data-dropdown-toggle="apple-watch-se-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  dark:hover:text-gray-100"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="apple-watch-se-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="apple-watch-se-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">NIKON
-                                D850</th>
-                            <td class="px-4 py-3">Photo</td>
-                            <td class="px-4 py-3">Nikon</td>
-                            <td class="px-4 py-3">465</td>
-                            <td class="px-4 py-3">$599</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="nikon-d850-dropdown-button" data-dropdown-toggle="nikon-d850-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  dark:hover:text-gray-100"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="nikon-d850-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="nikon-d850-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">Monitor
-                                BenQ EX2710Q</th>
-                            <td class="px-4 py-3">TV/Monitor</td>
-                            <td class="px-4 py-3">BenQ</td>
-                            <td class="px-4 py-3">354</td>
-                            <td class="px-4 py-3">$499</td>
-                            <td class="px-4 py-3 flex items-center justify-end">
-                                <button id="benq-ex2710q-dropdown-button" data-dropdown-toggle="benq-ex2710q-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none  dark:hover:text-gray-100"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="benq-ex2710q-dropdown"
-                                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
-                                    <ul class="py-1 text-sm text-gray-700 "
-                                        aria-labelledby="benq-ex2710q-dropdown-button">
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <a href="#"
-                                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600  dark:hover:text-white">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="admin-reservations-table-body" class="bg-white divide-y divide-gray-200">
+                        </tbody>
                 </table>
             </div>
-            <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
-                aria-label="Table navigation">
-                <span class="text-sm font-normal text-gray-500 ">
-                    Showing
-                    <span class="font-semibold text-gray-900 ">1-10</span>
-                    of
-                    <span class="font-semibold text-gray-900 ">1000</span>
-                </span>
-                <ul class="inline-flex items-stretch -space-x-px">
-                    <li>
-                        <a href="#"
-                            class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">
-                            <span class="sr-only">Previous</span>
-                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                    </li>
-                    <li>
-                        <a href="#" aria-current="page"
-                            class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 ">3</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">...</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">100</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">
-                            <span class="sr-only">Next</span>
-                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="text-center mt-8">
+                <a href="#" class="inline-block bg-blue-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">Lihat Semua Reservasi</a>
+            </div>
+        </section>
+
+        <hr class="my-6 border-gray-200">
+
+        <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4 border-b border-gray-200">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-2xl font-bold text-gray-800">Manajemen Peminjaman Alat/Barang</h2>
+                <p class="text-sm text-gray-600 mt-1">Tinjau dan kelola semua permintaan peminjaman alat/barang laboratorium.</p>
+            </div>
+            <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                {{-- Tombol Add Product (Jika ada fungsi tambah peminjaman) --}}
+            </div>
+        </div>
+
+        <section id="peminjaman" class="p-4">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Alat/Barang</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tgl Pinjam</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tgl Kembali</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-loans-table-body" class="bg-white divide-y divide-gray-200">
+                        </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-8">
+                <a href="#" class="inline-block bg-blue-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors">Lihat Semua Peminjaman</a>
+            </div>
+        </section>
+
+        <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4 border-t border-gray-200" aria-label="Table navigation">
+            <span class="text-sm font-normal text-gray-500">
+                Menampilkan
+                <span class="font-semibold text-gray-900">1-10</span>
+                dari
+                <span class="font-semibold text-gray-900">1000</span>
+            </span>
+            <ul class="inline-flex items-stretch -space-x-px">
+                <li>
+                    <a href="#" class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+                        <span class="sr-only">Previous</span>
+                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">1</a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
+                </li>
+                <li>
+                    <a href="#" aria-current="page" class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700">3</a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">...</a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">100</a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+                        <span class="sr-only">Next</span>
+                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</div>
+
+<footer id="kontak" class="bg-gray-900 text-gray-300 py-12 px-4 rounded-t-xl shadow-inner mt-8">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold text-white mb-6">Lab Ilmu Komputer</h2>
+        <p class="text-lg mb-8 max-w-2xl mx-auto">
+            Sistem Administrasi Laboratorium Ilmu Komputer.
+        </p>
+        <div class="mt-10 border-t border-gray-700 pt-8 text-sm">
+            <p>&copy; <span id="currentYear"></span> Laboratorium Ilmu Komputer. Semua Hak Dilindungi.</p>
         </div>
     </div>
+</footer>
+
+<div id="rejection-reason-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 items-center justify-center z-50 hidden">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md mx-auto relative">
+        <button type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" id="close-modal-button">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Berikan Alasan Penolakan</h3>
+        <textarea id="rejection-reason-textarea" rows="5"
+                  class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-base resize-none"
+                  placeholder="Masukkan alasan penolakan di sini..."></textarea>
+        <div class="flex justify-end space-x-4 mt-6">
+            <button id="cancel-rejection-button" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors">Batal</button>
+            <button id="submit-rejection-button" class="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">Tolak</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const adminReservationsTableBody = document.getElementById('admin-reservations-table-body');
+        const adminLoansTableBody = document.getElementById('admin-loans-table-body');
+        // Pastikan elemen ini ada di HTML Anda jika ingin menampilkan hitungan pending
+        const pendingReservationsCount = document.getElementById('pending-reservations-count');
+        const pendingLoansCount = document.getElementById('pending-loans-count');
+
+        // Modal elements
+        const rejectionReasonModal = document.getElementById('rejection-reason-modal');
+        const closeRejectionModalButton = document.getElementById('close-modal-button');
+        const cancelRejectionButton = document.getElementById('cancel-rejection-button');
+        const submitRejectionButton = document.getElementById('submit-rejection-button');
+        const rejectionReasonTextarea = document.getElementById('rejection-reason-textarea');
+
+        let currentActionTarget = null; // To store which item is being rejected
+
+        // Toggle mobile menu (assuming these elements are part of your templatedashboard)
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        }
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Dummy data for reservations (including some pending for demonstration)
+        let adminReservations = [
+            {
+                id: 'res001',
+                nama: "Budi Santoso",
+                ruangan: "Lab Pemrograman Dasar",
+                tanggal: "2025-06-01",
+                waktu: "09:00 - 11:00",
+                tujuan: "Praktikum Struktur Data",
+                status: "Dikonfirmasi",
+                reason: null
+            },
+            {
+                id: 'res002',
+                nama: "Siti Aminah",
+                ruangan: "Lab Jaringan Komputer",
+                tanggal: "2025-06-01",
+                waktu: "13:00 - 15:00",
+                tujuan: "Penelitian Tugas Akhir",
+                status: "Menunggu Konfirmasi",
+                reason: null
+            },
+            {
+                id: 'res003',
+                nama: "Ahmad Fauzi",
+                ruangan: "Lab Kecerdasan Buatan",
+                tanggal: "2025-06-02",
+                waktu: "10:00 - 12:00",
+                tujuan: "Workshop Machine Learning",
+                status: "Menunggu Konfirmasi",
+                reason: null
+            },
+            {
+                id: 'res004',
+                nama: "Dewi Lestari",
+                ruangan: "Lab Pemrograman Dasar",
+                tanggal: "2025-06-03",
+                waktu: "14:00 - 16:00",
+                tujuan: "Diskusi Kelompok Proyek",
+                status: "Ditolak",
+                reason: "Ruangan sudah dibooking untuk kegiatan lain pada jam tersebut."
+            }
+        ];
+
+        // Dummy data for loan requests
+        let adminLoans = [
+            {
+                id: 'loan001',
+                nama: "Andi Pratama",
+                alat: "Arduino Uno",
+                jumlah: 2,
+                tgl_pinjam: "2025-05-29",
+                tgl_kembali: "2025-06-05",
+                status: "Menunggu Konfirmasi",
+                reason: null
+            },
+            {
+                id: 'loan002',
+                nama: "Rina Wijaya",
+                alat: "Kabel LAN 10m",
+                jumlah: 5,
+                tgl_pinjam: "2025-05-28",
+                tgl_kembali: "2025-06-01",
+                status: "Dikonfirmasi",
+                reason: null
+            },
+            {
+                id: 'loan003',
+                nama: "Joko Susilo",
+                alat: "Sensor Suhu DHT11",
+                jumlah: 3,
+                tgl_pinjam: "2025-06-01",
+                tgl_kembali: "2025-06-08",
+                status: "Menunggu Konfirmasi",
+                reason: null
+            },
+            {
+                id: 'loan004',
+                nama: "Fitriani",
+                alat: "Kamera Termal",
+                jumlah: 1,
+                tgl_pinjam: "2025-06-02",
+                tgl_kembali: "2025-06-09",
+                status: "Ditolak",
+                reason: "Alat sedang dalam perbaikan."
+            }
+        ];
+
+        // Function to populate reservations table
+        function populateAdminReservationsTable() {
+            adminReservationsTableBody.innerHTML = '';
+            let pendingRes = 0;
+            adminReservations.forEach(reservation => {
+                const row = document.createElement('tr');
+                let statusClass = '';
+                let actionButtons = '';
+                let reasonDisplay = '';
+
+                if (reservation.status === 'Dikonfirmasi') {
+                    statusClass = 'bg-green-100 text-green-800';
+                    actionButtons = `<button data-id="${reservation.id}" data-type="reservasi" data-action="batal" class="text-red-600 hover:text-red-900 font-semibold text-sm">Batal</button>`;
+                } else if (reservation.status === 'Menunggu Konfirmasi') {
+                    statusClass = 'bg-yellow-100 text-yellow-800';
+                    pendingRes++;
+                    actionButtons = `
+                        <button data-id="${reservation.id}" data-type="reservasi" data-action="konfirmasi" class="text-blue-600 hover:text-blue-900 font-semibold text-sm mr-2">Konfirmasi</button>
+                        <button data-id="${reservation.id}" data-type="reservasi" data-action="tolak" class="text-red-600 hover:text-red-900 font-semibold text-sm">Tolak</button>
+                    `;
+                } else if (reservation.status === 'Dibatalkan') { // Menambahkan kondisi untuk "Dibatalkan"
+                    statusClass = 'bg-gray-200 text-gray-700'; // Warna abu-abu untuk dibatalkan
+                    actionButtons = `<button data-id="${reservation.id}" data-type="reservasi" data-action="hapus" class="text-gray-600 hover:text-gray-900 font-semibold text-sm">Hapus</button>`;
+                } else { // Ditolak
+                    statusClass = 'bg-red-100 text-red-800';
+                    actionButtons = `<button data-id="${reservation.id}" data-type="reservasi" data-action="hapus" class="text-gray-600 hover:text-gray-900 font-semibold text-sm">Hapus</button>`;
+                    if (reservation.reason) {
+                        reasonDisplay = `<p class="text-gray-500 text-xs mt-1">Alasan: ${reservation.reason}</p>`;
+                    }
+                }
+
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${reservation.nama}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${reservation.ruangan}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${reservation.tanggal}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${reservation.waktu}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">${reservation.tujuan}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}">
+                            ${reservation.status}
+                        </span>
+                        ${reasonDisplay}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        ${actionButtons}
+                    </td>
+                `;
+                adminReservationsTableBody.appendChild(row);
+            });
+            if (pendingReservationsCount) {
+                pendingReservationsCount.textContent = pendingRes;
+            }
+        }
+
+        // Function to populate loans table
+        function populateAdminLoansTable() {
+            adminLoansTableBody.innerHTML = '';
+            let pendingLns = 0;
+            adminLoans.forEach(loan => {
+                const row = document.createElement('tr');
+                let statusClass = '';
+                let actionButtons = '';
+                let reasonDisplay = '';
+
+                if (loan.status === 'Dikonfirmasi') {
+                    statusClass = 'bg-green-100 text-green-800';
+                    actionButtons = `<button data-id="${loan.id}" data-type="peminjaman" data-action="kembali" class="text-blue-600 hover:text-blue-900 font-semibold text-sm mr-2">Kembali</button>
+                                     <button data-id="${loan.id}" data-type="peminjaman" data-action="batal" class="text-red-600 hover:text-red-900 font-semibold text-sm">Batal</button>`;
+                } else if (loan.status === 'Menunggu Konfirmasi') {
+                    statusClass = 'bg-yellow-100 text-yellow-800';
+                    pendingLns++;
+                    actionButtons = `
+                        <button data-id="${loan.id}" data-type="peminjaman" data-action="konfirmasi" class="text-blue-600 hover:text-blue-900 font-semibold text-sm mr-2">Konfirmasi</button>
+                        <button data-id="${loan.id}" data-type="peminjaman" data-action="tolak" class="text-red-600 hover:text-red-900 font-semibold text-sm">Tolak</button>
+                    `;
+                } else if (loan.status === 'Dikembalikan') {
+                    statusClass = 'bg-blue-100 text-blue-800';
+                    actionButtons = `<button data-id="${loan.id}" data-type="peminjaman" data-action="hapus" class="text-gray-600 hover:text-gray-900 font-semibold text-sm">Hapus</button>`;
+                } else if (loan.status === 'Dibatalkan') { // Menambahkan kondisi untuk "Dibatalkan"
+                    statusClass = 'bg-gray-200 text-gray-700'; // Warna abu-abu untuk dibatalkan
+                    actionButtons = `<button data-id="${loan.id}" data-type="peminjaman" data-action="hapus" class="text-gray-600 hover:text-gray-900 font-semibold text-sm">Hapus</button>`;
+                } else { // Ditolak
+                    statusClass = 'bg-red-100 text-red-800';
+                    actionButtons = `<button data-id="${loan.id}" data-type="peminjaman" data-action="hapus" class="text-gray-600 hover:text-gray-900 font-semibold text-sm">Hapus</button>`;
+                    if (loan.reason) {
+                        reasonDisplay = `<p class="text-gray-500 text-xs mt-1">Alasan: ${loan.reason}</p>`;
+                    }
+                }
+
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${loan.nama}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${loan.alat}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${loan.jumlah}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${loan.tgl_pinjam}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${loan.tgl_kembali}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}">
+                            ${loan.status}
+                        </span>
+                        ${reasonDisplay}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        ${actionButtons}
+                    </td>
+                `;
+                adminLoansTableBody.appendChild(row);
+            });
+            if (pendingLoansCount) {
+                pendingLoansCount.textContent = pendingLns;
+            }
+        }
+
+        // Handle action buttons (Konfirmasi, Tolak, Batal, Kembali, Hapus)
+        document.addEventListener('click', function(event) {
+            const target = event.target;
+            if (target.tagName === 'BUTTON' && target.dataset.id && target.dataset.type && target.dataset.action) {
+                const id = target.dataset.id;
+                const type = target.dataset.type;
+                const action = target.dataset.action;
+
+                if (action === 'tolak') {
+                    currentActionTarget = { id, type };
+                    rejectionReasonModal.classList.remove('hidden'); // Show modal
+                    rejectionReasonTextarea.value = ''; // Clear previous reason
+                } else {
+                    handleAction(id, type, action);
+                }
+            }
+        });
+
+        // Handle modal close button
+        closeRejectionModalButton.addEventListener('click', function() {
+            rejectionReasonModal.classList.add('hidden');
+        });
+
+        // Handle modal cancel button
+        cancelRejectionButton.addEventListener('click', function() {
+            rejectionReasonModal.classList.add('hidden');
+        });
+
+        // Handle modal submit button
+        submitRejectionButton.addEventListener('click', function() {
+            const reason = rejectionReasonTextarea.value.trim();
+            if (currentActionTarget && reason) {
+                handleAction(currentActionTarget.id, currentActionTarget.type, 'tolak', reason);
+                rejectionReasonModal.classList.add('hidden');
+            } else if (!reason) {
+                alert('Alasan penolakan tidak boleh kosong.');
+            }
+        });
+
+        // Close modal if clicked outside
+        window.addEventListener('click', function(event) {
+            if (event.target === rejectionReasonModal) {
+                rejectionReasonModal.classList.add('hidden');
+            }
+        });
+
+        // Central function to handle actions
+        function handleAction(id, type, action, reason = null) {
+            if (type === 'reservasi') {
+                const index = adminReservations.findIndex(res => res.id === id);
+                if (index !== -1) {
+                    if (action === 'konfirmasi') {
+                        adminReservations[index].status = 'Dikonfirmasi';
+                        adminReservations[index].reason = null; // Clear reason if confirmed
+                    } else if (action === 'tolak') {
+                        adminReservations[index].status = 'Ditolak';
+                        adminReservations[index].reason = reason;
+                    } else if (action === 'batal') {
+                        adminReservations[index].status = 'Dibatalkan';
+                        adminReservations[index].reason = null;
+                    } else if (action === 'hapus') {
+                        adminReservations.splice(index, 1);
+                    }
+                    populateAdminReservationsTable(); // Refresh table
+                }
+            } else if (type === 'peminjaman') {
+                const index = adminLoans.findIndex(loan => loan.id === id);
+                if (index !== -1) {
+                    if (action === 'konfirmasi') {
+                        adminLoans[index].status = 'Dikonfirmasi';
+                        adminLoans[index].reason = null; // Clear reason if confirmed
+                    } else if (action === 'tolak') {
+                        adminLoans[index].status = 'Ditolak';
+                        adminLoans[index].reason = reason;
+                    } else if (action === 'kembali') {
+                        adminLoans[index].status = 'Dikembalikan';
+                        adminLoans[index].reason = null;
+                    } else if (action === 'batal') {
+                        adminLoans[index].status = 'Dibatalkan';
+                        adminLoans[index].reason = null;
+                    } else if (action === 'hapus') {
+                        adminLoans.splice(index, 1);
+                    }
+                    populateAdminLoansTable(); // Refresh table
+                }
+            }
+        }
+
+        // Initial population of tables
+        populateAdminReservationsTable();
+        populateAdminLoansTable();
+    });
+</script>
 
 @endsection
