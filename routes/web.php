@@ -21,17 +21,17 @@ Route::get('/peminjaman', function () {
 Route::post('/reservasi-post', [ReservasiController::class, 'addreservasi'])->name('addreservasi');
 Route::post('/peminjaman-post', [PeminjamanController::class, 'addpeminjaman'])->name('addpeminjaman');
 
-Route::get('/jadwal-ruang', function(){
+Route::get('/jadwal-ruang', function () {
     return view('jadwalRuang');
 });
 
 # dashboard
-Route::get('/dashboard', function(){
+Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 });
-Route::get('/pemesanan-ruang', function(){
-    return view('dashboard.pemesananRuangan');
+Route::get('/pemesanan-ruang', function () {
+    return view('dashboard.pemesananRuang');
 });
-Route::get('/setting', function(){
+Route::get('/setting', function () {
     return view('dashboard.setting');
 });
