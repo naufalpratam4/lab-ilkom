@@ -31,7 +31,7 @@
                     <i class="fas fa-home fa-fw mr-3"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="/pemesanan-ruang"
+                <a href="/dashboard/pemesanan-ruang"
                     class="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
                     <i class="fas fa-chart-bar fa-fw mr-3"></i>
                     <span>Pemesanan Ruangan</span>
