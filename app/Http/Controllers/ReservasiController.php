@@ -20,4 +20,10 @@ class ReservasiController extends Controller
         $reservasi->save();
         return redirect()->back();
     }
+
+    // Dashboard
+    public function dashboardReservasi(){
+        $reservasi = Reservasi::all();
+        return view('dashboard.pemesananRuangRev', compact('reservasi'));    
+    }
 }

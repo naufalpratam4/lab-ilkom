@@ -98,7 +98,7 @@
                 </div>
             </header>
 
-            <div class="container mx-auto p-6">
+            <div class="container mx-auto">
                 <div class="p-6">
                     @yield('content')
                 </div>

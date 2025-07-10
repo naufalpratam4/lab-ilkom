@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('reservasi', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('nim');
+            $table->string('nim');
             $table->string('email');
-            $table->bigInteger('no');
+            $table->string('no');
             $table->string('ruang');
             $table->date('tgl');
             $table->time('waktu_mulai');
             $table->time('waktu_selesai');
             $table->text('deskripsi');
+            $table->boolean('status')->nullable();
             $table->timestamps(); // ini akan buat created_at dan updated_at
 
         });

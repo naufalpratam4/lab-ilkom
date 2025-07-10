@@ -8,6 +8,6 @@ class Reservasi extends Model
 {
  protected $table = 'reservasi'; // <- ini penting
     protected $fillable = [
-        'name', 'nim', 'email', 'no', 'ruang', 'tgl', 'waktu_mulai', 'waktu_selesai', 'deskripsi'
+        'name', 'nim', 'email', 'no', 'ruang', 'tgl', 'waktu_mulai', 'waktu_selesai', 'deskripsi', 'status'
     ];
 }

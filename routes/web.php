@@ -29,9 +29,10 @@ Route::get('/jadwal-ruang', function () {
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 });
-Route::get('/pemesanan-ruang', function () {
-    return view('dashboard.pemesananRuang');
-});
+// Route::get('/pemesanan-ruang', function () {
+//     return view('dashboard.pemesananRuang');
+// });
+Route::get('/pemesanan-ruang', [ReservasiController::class, 'dashboardReservasi']);
 Route::get('/setting', function () {
     return view('dashboard.setting');
 });
