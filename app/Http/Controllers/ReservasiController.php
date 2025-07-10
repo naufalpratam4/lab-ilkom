@@ -26,4 +26,8 @@ class ReservasiController extends Controller
         $reservasi = Reservasi::all();
         return view('dashboard.pemesananRuangRev', compact('reservasi'));    
     }
+    public function dashboardReservasiDetail($id){
+        $reservasi = Reservasi::find($id);
+        return view('dashboard.pemesananRuangDetail', compact('reservasi'));
+    }
 }

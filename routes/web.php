@@ -32,7 +32,10 @@ Route::get('/dashboard', function () {
 // Route::get('/pemesanan-ruang', function () {
 //     return view('dashboard.pemesananRuang');
 // });
+// pemesanan ruang
 Route::get('/dashboard/pemesanan-ruang', [ReservasiController::class, 'dashboardReservasi']);
+Route::get('/dashboard/reservasi/{id}', [ReservasiController::class, 'dashboardReservasiDetail'])->name('dashboard.reservasi.detail'); // detail reservasi
+
 Route::get('/setting', function () {
     return view('dashboard.setting');
 });

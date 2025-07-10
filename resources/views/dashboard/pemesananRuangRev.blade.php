@@ -49,7 +49,12 @@
                         <tbody id="admin-reservations-table-body" class="divide-y divide-gray-200">
                             @foreach ($reservasi as $reserv => $item)
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4">{{ $item->name }}</td>
+                                    <td class="px-6 py-4">
+            <a href="{{ route('dashboard.reservasi.detail', $item->id) }}"
+               class="text-blue-600 hover:underline">
+                {{ $item->name }}
+            </a>
+        </td>
                                     <td class="px-6 py-4">{{ $item->ruang }}</td>
                                     <td class="px-6 py-4">{{ $item->tgl }}</td>
                                     <td class="px-6 py-4">{{ $item->waktu_mulai }} - {{ $item->waktu_selesai }}</td>
